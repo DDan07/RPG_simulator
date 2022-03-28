@@ -28,60 +28,69 @@ namespace RPG_simulátor_2022
             Console.WriteLine("Zadej jméno charaktera: ");
             string jmeno = Console.ReadLine();
 
-            do
+            if (jmeno.ToLower().Trim() == "amogus")
             {
-                // vypsání ui karel
                 Console.Clear();
-                Console.WriteLine($"Jsi unavený na {unavenost}%");
-                Console.WriteLine("Chcete jít na quest nebo spánek ? Q/S");
-                string odpoved = Console.ReadLine().ToLower().Trim();
-                //spanek nebo quest Dan
-                if (odpoved == "s")
+                for (int i = 0; i < 30; i++)
+                Console.WriteLine("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                Thread.Sleep(5000);
+            }
+            else
+            {
+                do
                 {
+                    // vypsání ui karel
                     Console.Clear();
-                    Console.WriteLine($"{jmeno} bude spát jestě {unavenost} sekund.");
-                    Thread.Sleep(unavenost * 1000);
-                    Console.WriteLine($"{jmeno} už je vzhůru.");
-                    unavenost = 0;
-                    Console.WriteLine("Pro pokračování stiskni libovolné tlačítko...");
-                    Console.ReadKey();
-                }
-                else if (odpoved == "q")
-                {
-                    Console.Clear();
-                    // Určí stat questy Vítek
-                    Random random = new Random();
-                    Random rnd = new Random();
-                    string quest = pole[random.Next(0, pole.Length)];
-                    Console.WriteLine($"Jdeš na quest na {quest}, vrať se za {level * 10} sekund.\n...");
-                    Thread.Sleep(level * 10000);
-
-                    if (random.Next(0, 101) > unavenost)
+                    Console.WriteLine($"Jsi unavený na {unavenost}%");
+                    Console.WriteLine("Chcete jít na quest nebo spánek ? Q/S");
+                    string odpoved = Console.ReadLine().ToLower().Trim();
+                    //spanek nebo quest Dan
+                    if (odpoved == "s")
                     {
-                        level++;
-                        stats[quest] += 10;
-                        Console.WriteLine($"{jmeno} se vrátil z questu jako rybička.\n---------------------------------  ");
-                        Console.WriteLine($"{jmeno} má lvl {level} a vlastnosti:");
-                        // vypsání kolekce
-                        foreach (var item in stats)
-                        {
-                            Console.WriteLine($"{item.Key}: {item.Value}");
-                        }
-                        unavenost += 10;
+                        Console.Clear();
+                        Console.WriteLine($"{jmeno} bude spát jestě {unavenost} sekund.");
+                        Thread.Sleep(unavenost * 1000);
+                        Console.WriteLine($"{jmeno} už je vzhůru.");
+                        unavenost = 0;
                         Console.WriteLine("Pro pokračování stiskni libovolné tlačítko...");
                         Console.ReadKey();
                     }
-                    else
+                    else if (odpoved == "q")
                     {
-                        Console.WriteLine($"{jmeno} zemřel.");
-                        Console.WriteLine("Pro ukončení stiskni libovolné tlačítko...");
-                        Console.ReadKey();
-                        break;
+                        Console.Clear();
+                        // Určí stat questy Vítek
+                        Random random = new Random();
+                        Random rnd = new Random();
+                        string quest = pole[random.Next(0, pole.Length)];
+                        Console.WriteLine($"Jdeš na quest na {quest}, vrať se za {level * 10} sekund.\n...");
+                        Thread.Sleep(level * 10000);
+
+                        if (random.Next(0, 101) > unavenost)
+                        {
+                            level++;
+                            stats[quest] += 10;
+                            Console.WriteLine($"{jmeno} se vrátil z questu jako rybička.\n---------------------------------  ");
+                            Console.WriteLine($"{jmeno} má lvl {level} a vlastnosti:");
+                            // vypsání kolekce
+                            foreach (var item in stats)
+                            {
+                                Console.WriteLine($"{item.Key}: {item.Value}");
+                            }
+                            unavenost += 10;
+                            Console.WriteLine("Pro pokračování stiskni libovolné tlačítko...");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{jmeno} zemřel.");
+                            Console.WriteLine("Pro ukončení stiskni libovolné tlačítko...");
+                            Console.ReadKey();
+                            break;
+                        }
                     }
                 }
-
-            } while (true);
-
+                while (true);
+            }
         }
     }
 }
