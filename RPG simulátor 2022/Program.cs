@@ -33,38 +33,31 @@ namespace RPG_simulátor_2022
                 // vypsání ui karel
                 Console.Clear();
                 Console.WriteLine($"Jsi unavený na {unavenost}%");
-                Console.WriteLine("chcete jít na quest nebo spánek ? q/s");
-
+                Console.WriteLine("Chcete jít na quest nebo spánek ? Q/S");
+                string odpoved = Console.ReadLine().ToLower().Trim();
                 //spanek nebo quest Dan
-                if (Console.ReadLine() == "s")
+                if (odpoved == "s")
                 {
                     Console.Clear();
                     Console.WriteLine($"{jmeno} bude spát jestě {unavenost} sekund.");
-                    Thread.Sleep(unavenost * 1000);
+                    //Thread.Sleep(unavenost * 1000);
                     Console.WriteLine($"{jmeno} už je vzhůru.");
                     unavenost = 0;
                     Console.WriteLine("Pro pokračování stiskni libovolné tlačítko...");
                     Console.ReadKey();
                 }
-                else
+                else if (odpoved == "q")
                 {
                     Console.Clear();
                     // Určí stat questy Vítek
                     Random random = new Random();
                     Random rnd = new Random();
-                    if (random.Next(0, 11) == 7)
-                    {
-                        Console.WriteLine($"{jmeno} zemřel.");
-                        Console.WriteLine("Pro pokračování stiskni libovolné tlačítko...");
-                        Console.ReadKey();
-                        break;
-                    }
-                    else
-                    {
-                        string quest = pole[random.Next(0, pole.Length)];
-                        Console.WriteLine($"Jdeš na quest na {quest}, vrať se za {level * 10} sekund.\n...");
-                        Thread.Sleep(level * 1000);
+                    string quest = pole[random.Next(0, pole.Length)];
+                    Console.WriteLine($"Jdeš na quest na {quest}, vrať se za {level * 10} sekund.\n...");
+                    //Thread.Sleep(level * 1000);
 
+                    if (random.Next(0, 101) >= unavenost)
+                    {
                         level++;
                         stats[quest] += 10;
                         Console.WriteLine($"{jmeno} se vrátil z questu jako rybička.\n---------------------------------  ");
@@ -77,6 +70,13 @@ namespace RPG_simulátor_2022
                         unavenost += 10;
                         Console.WriteLine("Pro pokračování stiskni libovolné tlačítko...");
                         Console.ReadKey();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{jmeno} zemřel.");
+                        Console.WriteLine("Pro pokračování stiskni libovolné tlačítko...");
+                        Console.ReadKey();
+                        break;
                     }
                 }
 
