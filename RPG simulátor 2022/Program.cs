@@ -40,7 +40,7 @@ namespace RPG_simulátor_2022
                 {
                     Console.Clear();
                     Console.WriteLine($"{jmeno} bude spát jestě {unavenost} sekund.");
-                    //Thread.Sleep(unavenost * 1000);
+                    Thread.Sleep(unavenost * 1000);
                     Console.WriteLine($"{jmeno} už je vzhůru.");
                     unavenost = 0;
                     Console.WriteLine("Pro pokračování stiskni libovolné tlačítko...");
@@ -54,7 +54,7 @@ namespace RPG_simulátor_2022
                     Random rnd = new Random();
                     string quest = pole[random.Next(0, pole.Length)];
                     Console.WriteLine($"Jdeš na quest na {quest}, vrať se za {level * 10} sekund.\n...");
-                    //Thread.Sleep(level * 1000);
+                    Thread.Sleep(level * 10000);
 
                     if (random.Next(0, 101) >= unavenost)
                     {
